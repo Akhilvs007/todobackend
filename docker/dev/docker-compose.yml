@@ -17,9 +17,6 @@ test:
 builder:
   build: ../../
   dockerfile: docker/dev/Dockerfile
-  volumes:
-    - ../../target:/wheelhouse
- 
   volumes_from:
     - cache
 
@@ -28,14 +25,13 @@ builder:
 
 
 agent:
-  image: akhilvs007/ansible
-  volumes:
-    - ../../ansible/probe.yml:/ansible/site.yml
+  image: jmenga/ansible
   links:
     - db
   environment:
     PROBE_HOST: "db"
     PROBE_PORT: "3306"
+  command: ["probe.yml"]
 
 
 db:
