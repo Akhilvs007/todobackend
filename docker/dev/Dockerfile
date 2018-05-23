@@ -1,48 +1,35 @@
-
-
 FROM jmenga/todobackend-base:latest
-MAINTAINER Akhil VS <akhil.vs7@gmail.com>
+MAINTAINER Justin Menga <justin.menga@gmail.com>
 
-
-#install dev/build dependencies
+# Install dev/build dependencies
 RUN apt-get update && \
-    apt-get install -qy python-dev libmysqlclient-dev python-setuptools build-essential
-    
+    apt-get install -qy python-dev libmysqlclient-dev
 
-#Activate virtual env and install whell support
+# Activate virtual environment and install wheel support
 RUN . /appenv/bin/activate && \
     pip install wheel --upgrade
 
-#INstall setup tools
-
-RUN pip install setuptools --upgrade
-
-# pip environment variables (NOTE: must be set after installing wheel)
+# PIP environment variables (NOTE: must be set after installing wheel)
 ENV WHEELHOUSE=/wheelhouse PIP_WHEEL_DIR=/wheelhouse PIP_FIND_LINKS=/wheelhouse XDG_CACHE_HOME=/cache
 
-
-
-#output : build artifacts (wheels) are output here
+# OUTPUT: Build artefacts (Wheels) are output here
 VOLUME /wheelhouse
 
-
-#OUTPUT : Build Cache
+# OUTPUT: Build cache
 VOLUME /build
 
-#output: Test reports are output here
+# OUTPUT: Test reports are output here
 VOLUME /reports
 
-
-#Add test entrypoint script
+# Add test entrypoint script
 COPY scripts/test.sh /usr/local/bin/test.sh
 RUN chmod +x /usr/local/bin/test.sh
 
-#Set defaults for entrypoint and command string
+# Set defaults for entrypoint and command string
 ENTRYPOINT ["test.sh"]
 CMD ["python", "manage.py", "test", "--noinput"]
 
-
-
-#Add application source
+# Add application source
 COPY src /application
 WORKDIR /application
+
