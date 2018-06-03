@@ -7,7 +7,7 @@ app:
     DJANGO_SETTINGS_MODULE: todobackend.settings.release
     MYSQL_HOST: db
     MYSQL_USER: todo
-    MYSQL_PASSWORD: password
+    MYSQL_PASSWORD: Password@1234
   volumes_from:
     - webroot
   command:
