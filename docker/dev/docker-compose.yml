@@ -9,7 +9,7 @@ test:
     DJANGO_SETTINGS_MODULE: todobackend.settings.test
     MYSQL_HOST: db
     MYSQL_USER: root
-    MYSQL_PASSWORD: password
+    MYSQL_PASSWORD: Password@1234
     TEST_OUTPUT_DIR: /reports
 
 builder:
@@ -35,7 +35,7 @@ db:
   expose:
     - "3306"
   environment:
-    MYSQL_ROOT_PASSWORD: password
+    MYSQL_ROOT_PASSWORD: Password@1234
 
 cache:
   build: ../../
