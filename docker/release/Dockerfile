@@ -1,4 +1,4 @@
-FROM akhilvs007/todobackend-base:latest
+FROM jmenga/todobackend-base:latest
 MAINTAINER Justin Menga <justin.menga@gmail.com>
 
 # Copy application artifacts
