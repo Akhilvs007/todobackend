@@ -1,4 +1,4 @@
-FROM akhilvs/todobackend-base:latest
+FROM akhilvs007/todobackend-base:latest
 MAINTAINER Justin Menga <justin.menga@gmail.com>
 
 # Install dev/build dependencies
